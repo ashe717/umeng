@@ -10,13 +10,12 @@ use UmengPusher\Umeng\Android\AndroidFilecast;
 use UmengPusher\Umeng\Android\AndroidGroupcast;
 use UmengPusher\Umeng\Android\AndroidListcast;
 use UmengPusher\Umeng\Android\AndroidUnicast;
-use Log;
 
 class AndroidPusher extends Pusher
 {
 
     /**
-     * Android广播
+     * Android骞挎挱
      * @param array $predefined
      * @param array $extraField
      * @return mixed
@@ -43,7 +42,7 @@ class AndroidPusher extends Pusher
     }
 
     /**
-     * Android单播
+     * Android鍗曟挱
      * @param string $device_tokens
      * @param array $predefined
      * @param array $extraField
@@ -71,7 +70,7 @@ class AndroidPusher extends Pusher
     }
 
     /**
-     * Android列播
+     * Android鍒楁挱
      * @param string $device_tokens
      * @param array $predefined
      * @param array $extraField
@@ -99,7 +98,7 @@ class AndroidPusher extends Pusher
     }
 
     /**
-     * Android文件播
+     * Android鏂囦欢鎾�
      * @param string $fileContents
      * @param array $predefined
      * @param array $extraField
@@ -128,7 +127,7 @@ class AndroidPusher extends Pusher
     }
 
     /**
-     * Android组播
+     * Android缁勬挱
      * @param array $filter
      * @param array $predefined
      * @param array $extraField
@@ -156,7 +155,7 @@ class AndroidPusher extends Pusher
     }
 
     /**
-     *  Android自定义播,通过alias
+     *  Android鑷畾涔夋挱,閫氳繃alias
      * @param string $alias
      * @param string $alias_type
      * @param array $predefined
@@ -187,7 +186,7 @@ class AndroidPusher extends Pusher
     }
 
     /**
-     * Android自定义播,通过file_id
+     * Android鑷畾涔夋挱,閫氳繃file_id
      * @param string $file_contents
      * @param array $predefined
      * @param array $extraField

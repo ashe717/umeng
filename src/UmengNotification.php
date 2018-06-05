@@ -3,7 +3,7 @@
 namespace UmengPusher\Umeng;
 
 use UmengPusher\Umeng\Exception\UmengException;
-use Log;
+
 
 abstract class UmengNotification {
 	// The host
@@ -53,7 +53,6 @@ abstract class UmengNotification {
 	//return TRUE if it's complete, otherwise throw exception with details
 	function isComplete() {
 		if (is_null($this->appMasterSecret)){
-			Log::error("Caught Umeng exception: Please set your app master secret for generating the signature!");
 			throw new UmengException("Please set your app master secret for generating the signature!");
 		}
 		$this->checkArrayValues($this->data);
@@ -63,7 +62,6 @@ abstract class UmengNotification {
 	private function checkArrayValues($arr) {
 		foreach ($arr as $key => $value) {
 			if (is_null($value)){
-				Log::error("Caught Umeng exception: ".$key . " is NULL!");
 				throw new UmengException($key . " is NULL!");
 			}
 			else if (is_array($value)) {
@@ -99,11 +97,9 @@ abstract class UmengNotification {
 		$data = json_decode($result,true);
 		if ($httpCode == "0") {
 			$errMsg = "Curl error number:" . $curlErrNo . " , Curl error details:" . $curlErr . "\r\n";
-			Log::error("Caught Umeng exception: " .$errMsg);
 			throw new UmengException($errMsg, 0);
 		} else if ($httpCode != "200") {
 			$errMsg = "Http code:" . $httpCode .  " details:" . $result . "\r\n";
-			Log::error("Caught Umeng exception: " .$errMsg);
 			throw new UmengException($errMsg, $httpCode, $data['data']['error_code']);
 
 		} else {

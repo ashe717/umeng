@@ -10,7 +10,8 @@ use UmengPusher\Umeng\IOS\IOSFilecast;
 use UmengPusher\Umeng\IOS\IOSGroupcast;
 use UmengPusher\Umeng\IOS\IOSListcast;
 use UmengPusher\Umeng\IOS\IOSUnicast;
-use Log;
+
+
 class IOSPusher extends Pusher
 {
 

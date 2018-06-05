@@ -3,7 +3,7 @@ namespace UmengPusher\Umeng\Android;
 
 use UmengPusher\Umeng\AndroidNotification;
 use UmengPusher\Umeng\Exception\UmengException;
-use Log;
+
 
 class AndroidFilecast extends AndroidNotification {
 	function  __construct() {
@@ -15,15 +15,12 @@ class AndroidFilecast extends AndroidNotification {
 	//return file_id if SUCCESS, else throw Exception with details.
 	function uploadContents($content) {
 		if ($this->data["appkey"] == NULL){
-			Log::error("Caught Umeng exception: appkey should not be NULL!");
 			throw new UmengException("appkey should not be NULL!");
 		}
 		if ($this->data["timestamp"] == NULL){
-			Log::error("Caught Umeng exception: timestamp should not be NULL!");
 			throw new UmengException("timestamp should not be NULL!");
 		}
 		if (!is_string($content)){
-			Log::error("Caught Umeng exception: content should be a string!");
 			throw new UmengException("content should be a string!");
 		}
 
@@ -50,17 +47,14 @@ class AndroidFilecast extends AndroidNotification {
 		$returnData = json_decode($result, TRUE);
         if ($httpCode == "0") {
 			$errMsg = "Curl error number:" . $curlErrNo . " , Curl error details:" . $curlErr . "\r\n";
-			Log::error("Caught Umeng exception: ". $errMsg);
 			throw new UmengException($errMsg, 0);
 		}
         else if ($httpCode != "200") {
 			$errMsg = "http code:" . $httpCode . " details:" . $result . "\r\n";
-			Log::error("Caught Umeng exception: ".$errMsg);
 			throw new UmengException($errMsg, $httpCode, $returnData['data']['error_code']);
 		}
         if ($returnData["ret"] == "FAIL"){
 			$errMsg = "Failed to upload file, details:" . $result . "\r\n";
-			Log::error("Caught Umeng exception: ".$errMsg);
 			throw new UmengException($errMsg, $httpCode, $returnData['data']['error_code']);
 		}
         else
